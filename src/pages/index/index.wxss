@@ -1,0 +1,66 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.userDivInfo{
+	text-align:right;
+	margin-right: 40rpx;
+}
+
+.warnbtn{
+  margin-top:10rpx;
+}
+
+.InventoryList{
+    background:#aaa;
+}
+
+#types {
+	margin: 0rpx 25rpx;
+	padding: 0rpx 00px;
+	background: white;
+	font-size: 16px;
+	text-align: center;
+	color: #555;
+	clear: both;
+}
+
+.list-item {
+	padding: 10rpx 13rpx;
+  /* border:1px solid black; */
+  border-bottom: 1px solid blueviolet;
+	float: left;
+  width: 21%;
+  text-align: center;
+
+}
+
+.type{
+                      display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+}
+
+/* .typeItem{
+                    width:30%;
+                    height: 200px;
+                    border:1px solid black;
+} */

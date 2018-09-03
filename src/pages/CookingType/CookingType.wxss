@@ -1,0 +1,75 @@
+/* pages/CookingType/CookingType.wxss */
+.CookingTitle{
+  display: flex;
+  border: 1px solid red;
+  text-align: center;
+}
+
+.good-item{
+  display: flex;
+  border: 1px solid rosybrown;
+  margin-top:40rpx;
+  background:#fff;
+  align-items: center;
+
+
+}
+
+.good-pic{
+        width: 70%;
+}
+.good-img{
+        width: 100%;
+}
+.good-des{
+
+    border: 1px solid red;
+    width: 30%;
+    /* display: flex; 
+    justify-content: center; 
+    align-items: center; */
+  }
+
+  /* .good-title{
+    margin-top:40%;
+    border: 1px solid green;
+    padding-bottom: 20%;
+  } */
+
+.checkboxTest{
+  color:red;
+}
+
+#foot {
+  line-height: 100rpx;
+  width: 750rpx;
+  height: 100rpx;
+  position: fixed;
+  bottom: 1px;
+  clear: both;
+  background: white;
+  border-top: 1px solid #ccc;
+}
+
+#all {
+  padding-left: 20rpx;
+  float: left;
+}
+
+.ctr {
+  position: relative;
+  top: 7rpx;
+}
+
+#total {
+  padding-right: 10rpx;
+  float: right;
+}
+
+#submit {
+  margin: 0px;
+  padding: 0rpx 45rpx 0rpx 40rpx;
+  float: right;
+  color: white;
+  background: orangered;
+}

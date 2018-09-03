@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<view class="userDivInfo">
+<!-- 	<label>[用户]:</label> -->
+	<label wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </label>
+	<label wx:else> 
+		<text class="userinfo-nickname">[用户] {{userInfo.nickName}}</text>
+	</label>	
+</view>
+
+  <swiper indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+    </swiper-item>
+  </block>
+  </swiper>
+
+<button type="warn" size="{{warnSize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="warn" class='warnbtn'> 开始点餐 </button>
+
+<!-- 类别-->
+<view class="type">
+   <block wx:for="{{dataType}}" wx:key="Id" class="typeItem">
+            <view class='list-item' bindtap="navigateToType" data-id="{{item._CookingType}}">
+              {{item._CookingType}}
+            </view>
+    </block>
+</view>
+
+<view class="container">
+ <block wx:for="{{dataList}}" wx:key="id" class="InventoryList">
+        <view class='goodlist'>
+            <view class='good-head'>
+                <text>{{item.CookType}}</text>
+                <text class='right more' bindtap="navigateToShop" data-id="{{item.Id}}"> 1                    </text>
+            </view>
+            <view class='good-body'>
+                <block wx:for="{{item.DdnList}}" wx:key="id" wx:for-item="DdnList">
+                    <view class='good-item' bindtap="navigateToGood" data-id="{{DdnList.id}}">
+                        <view class='good-pic'>
+                            <image src="http://192.168.210.37:10001/DishesImg/{{DdnList._Img}}" mode="aspectFill"></image>
+                        </view>
+                        <view class='good-desc'>
+                            <view class='good-title'>{{DdnList._DishName}}</view>
+                            <text class='good-price'>{{DdnList._Description}}</text>
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </block>
+
+</view>

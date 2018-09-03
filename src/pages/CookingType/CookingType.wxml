@@ -1,0 +1,47 @@
+<!--pages/CookingType/CookingType.wxml-->
+
+<view class="container">
+
+<view class='CookingTitle'>
+<text>{{ title }}</text>
+
+</view>
+
+<view class='good-body'>
+    <block wx:for="{{dataList}}" wx:key="id" wx:for-item="DdnList">
+        <view class='good-item' bindtap="navigateToGood" data-id="{{DdnList._ID}}">
+              <view class='good-pic'>
+                  <image src="{{imgaddress}}/DishesImg/{{DdnList._Img}}" mode="aspectFit" class='good-img'></image>
+              </view>
+               <view>
+               <block class='good-des'>
+                    <view class='good-title'>{{DdnList._DishName}}</view>
+                    <view class='good-title'>$：{{DdnList._Price}} 元</view>
+                    <!-- <image src="/image/cart_se.png" style="width:100rpx;height:100rpx"></image> -->
+                    
+                    <label class="checkboxTest"> 选中 </label><text>{{num}}</text>
+                    <switch type="checkbox" data-id="{{DdnList._ID}}" checked="{{DdnList.checked}}"  bindchange='checkItem'></switch>
+
+                </block>
+              </view>
+        </view>
+    </block>
+
+</view>
+
+    <!--底部-->
+    <view id="foot">
+    <view id="all">
+      <switch type="checkbox" checked="{{isAll}}" bindchange="checkAll" />
+      <text class='ctr'>全选</text>
+    </view>
+    <view id='submit' bindtap='submitCart'>
+      结算({{totalCount}})
+    </view>
+    <view id='total'>
+      合计:
+      <text class='red'> {{count}}份</text>
+    </view>
+  </view>
+
+</view>

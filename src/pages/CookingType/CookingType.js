@@ -6,18 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-      apiaddress: getApp().globalData.apiaddress,
-      imgaddress: getApp().globalData.imgaddress,
-      title:'',
-      count:0,
-      dataList:[]
+    apiaddress: getApp().globalData.apiaddress,
+    imgaddress: getApp().globalData.imgaddress,
+    title: '',
+    count: 0,
+    totalPrice: 0,
+    dataList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) { 
-    var that=this;
+  onLoad: function(options) {
+    var that = this;
     this.setData({
       title: options.id
     });
@@ -25,8 +26,7 @@ Page({
     //对应每个类别内所有商品
     wx.request({
       url: getApp().globalData.apiaddress + 'WebChatData/GetAllInventoryListById/' + options.id,
-      success:function(res){
-        console.log(res.data);
+      success: function(res) {
         that.setData({
           dataList: res.data
         })
@@ -35,26 +35,24 @@ Page({
   },
 
   //选中商品并添加到购物车内
-  changed:function(e){
-    wx.request({
-      url: getApp().globalData.apiaddress+'ShoppingCar/AddTest',
-      header: { 'content-type': 'application/x-www-form-urlencoded' },
-        method:'GET',
-      data: {
-          id:e.detail.value[0],
-          user:'admin'
-        },
-        success:function(res)
-        {
-        }
-    });
-
-  },
+  // changed: function(e) {
+  //   wx.request({
+  //     url: getApp().globalData.apiaddress + 'ShoppingCar/AddShoppingCar',
+  //     header: {
+  //       'content-type': 'application/x-www-form-urlencoded'
+  //     },
+  //     method: 'GET',
+  //     data: {
+  //       id: e.detail.value[0],
+  //       user: 'admin'
+  //     },
+  //     success: function(res) {}
+  //   });
+  // },
 
   //全选
-  checkAll:function(e){
+  checkAll: function(e) {
     var checked = e.detail.value;
-    console.log(e.detail.value);
     var dataList = this.data.dataList;
     for (var i = 0; i < dataList.length; i++) {
       dataList[i].checked = checked;
@@ -66,90 +64,118 @@ Page({
   },
 
   //计算选择数量
-  calcateTotal:function(){
-    var total=0;
+  calcateTotal: function() {
+    var total = 0;
+    var price = 0;
     var dataList = this.data.dataList;
     for (var i = 0; i < dataList.length; i++) {
-      if(dataList[i].checked)
-      {
-        total+=1;
-      } 
+      if (dataList[i].checked) {
+        total += 1;
+        price += dataList[i]._Price;
+      }
     }
     this.setData({
-      count:total
+      count: total,
+      totalPrice: price
     })
   },
 
   //单个选择
-  checkItem:function(e){
+  checkItem: function(e) {
+    var id = e.target.dataset.id;
     var checked = e.detail.value;
-    if(checked){
-      this.data.count++;
-    }
-    else{
-      this.data.count--;
-    }
-
+    var dataList = this.data.dataList;
+    for (var i = 0; i < dataList.length; i++) {
+      if (dataList[i]._ID == id) {
+        dataList[i].checked = checked;
+        break;
+      }
+    };
     this.setData({
-      count: this.data.count
+      dataList: dataList
     });
+    this.calcateTotal();
 
   },
 
+  //提交购物车
+  submitCart: function() {
+    var that = this;
+    var dataList = that.data.dataList;
+    for (var i = 0; i < dataList.length; i++) {
+      if (dataList[i].checked) {
+        console.log("i:" + dataList[i]._ID);
+        that.AddCart(dataList[i]._ID);  //提交到购物车
+      }
+    }
+  },
 
+  //提交数据到购物车
+  AddCart:function(id){
+    console.log("wx.request:"+id);
+    wx.request({
+      url: getApp().globalData.apiaddress + 'ShoppingCar/AddShoppingCar',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'GET',
+      data: {
+        id: id,
+        user: 'admin'
+      },
+      success: function (res) {
+          console.log(id+'ok');
+       },
+       fail:function(msg){
+         console.log(msg);
+       }
+
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  },
+  onReady: function() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   },
 
-
-  switch1Checked: function (e) {
-    console.log('switch1 发生 change 事件，携带值为', e.detail.value)
-  },
-  switch2Change: function (e) {
-    console.log('switch2 发生 change 事件，携带值为', e.detail.value)
-  }
 
 })

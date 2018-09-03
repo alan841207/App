@@ -26,7 +26,6 @@
               </view>
         </view>
     </block>
-
 </view>
 
     <!--底部-->
@@ -36,11 +35,13 @@
       <text class='ctr'>全选</text>
     </view>
     <view id='submit' bindtap='submitCart'>
-      结算({{totalCount}})
+      提交
     </view>
     <view id='total'>
       合计:
       <text class='red'> {{count}}份</text>
+      总计:
+      <text class='red'>¥ {{totalPrice}}</text>
     </view>
   </view>
 

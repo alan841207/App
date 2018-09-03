@@ -65,11 +65,14 @@
   padding-right: 10rpx;
   float: right;
 }
-
 #submit {
   margin: 0px;
   padding: 0rpx 45rpx 0rpx 40rpx;
   float: right;
   color: white;
   background: orangered;
+}
+.red {
+  color: orangered;
+  padding-right: 19rpx;
 }

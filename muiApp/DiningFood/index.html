@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<script src="js/mui.min.js"></script>
+	<script src="font_icon/iconfont.js" type="text/javascript" charset="utf-8"></script>
+
+	<link href="css/mui.min.css" rel="stylesheet" />
+<!-- 	<link rel="stylesheet" type="text/css" href="font_icon/iconfont.css" /> -->
+
+
+
+   <style type="text/css">
+        .icon {
+          width: 2em; height: 2em;
+          vertical-align: -0.15em;
+          fill: currentcolor;
+          overflow: hidden;
+        }
+				.icon:hover {
+					width: 2em; height: 2em;
+					vertical-align: -0.15em;
+					fill: green;
+					overflow: hidden;
+				}
+
+       </style>
+
+
+<header class="mui-bar mui-bar-nav">
+	<h1 class="mui-title">欢迎你!!</h1>
+</header>
+
+<div id="slider" class="mui-slider">
+	<div class="mui-slider-group mui-slider-loop">
+		<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+		<div class="mui-slider-item mui-slider-item-duplicate">
+			<a href="#">
+				<img src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'>
+			</a>
+		</div>
+		<!-- 第一张 -->
+		<div class="mui-slider-item">
+			<a href="#">
+				<img src='http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg'>
+			</a>
+		</div>
+		<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+		<div class="mui-slider-item mui-slider-item-duplicate">
+			<a href="#">
+				<img src='http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg'>
+			</a>
+		</div>
+	</div>
+	<div class="mui-slider-indicator">
+		<div class="mui-indicator mui-active">1</div>
+		<div class="mui-indicator">2</div>
+		<div class="mui-indicator">3</div>
+		<div class="mui-indicator">4</div>
+	</div>
+	
+</div>
+
+<div class="mui-content">
+			<form id='login-form' class="mui-input-group">
+				<div class="mui-input-row">
+					<label>账号</label>
+					<input id='account' type="text" class="mui-input-clear mui-input" placeholder="请输入账号">
+				</div>
+				<div class="mui-input-row">
+					<label>密码</label>
+					<input id='password' type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
+			</form>
+			<form class="mui-input-group">
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell">
+						自动登录
+						<div id="autoLogin" class="mui-switch">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</li>
+				</ul>
+			</form>
+			<div class="mui-content-padded">
+				<button id='login' class="mui-btn mui-btn-block mui-btn-primary">登录</button>
+				<div class="link-area"><a id='reg'>注册账号</a> <span class="spliter">|</span> <a id='forgetPassword'>忘记密码</a>
+				</div>
+			</div>
+			<div class="mui-content-padded oauth-area">
+
+			</div>
+		</div>
+		
+		
+
+<!-- 		<i class="iconfont icon-weixin1">登录</i> -->
+<div style="text-align: center;">
+	<svg class="icon" aria-hidden="true">
+		<use xlink:href="#icon-weixin"></use>
+	</svg>
+	<br/>
+	<label>登录</label>
+</div>
+
+
+
+</body>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		
+		//图片滚动
+		var gallery = mui('.mui-slider');
+		gallery.slider({
+					interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0； ,
+					});
+	</script>
+
+</html>

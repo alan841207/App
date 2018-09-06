@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="rosenbergerap.local">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link href="css/mui.css" rel="stylesheet" />
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	
+	<style>
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}
+			
+			.mui-col-xs-3,
+			.mui-col-xs-9 {
+				overflow-y: auto;
+				height: 100%;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				line-height: 50px;
+				width: 100%;
+			}
+			
+			.mui-control-content {
+				display: block;
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				background-color: #fff;
+			}
+		</style>
+	
+</head>
+
+<body>
+<!-- 	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">订餐系统</h1>
+	</header> -->
+
+	<header id="header" class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">订餐系统</h1>
+		<button class="mui-action-back mui-btn mui-btn-blue mui-btn-link mui-btn-nav mui-pull-left">
+			<span class="mui-icon mui-icon-left-nav"></span>首页</button>
+	</header>
+
+
+	<div id="slider" class="mui-slider" >
+	  <div class="mui-slider-group mui-slider-loop">
+		<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+		<div class="mui-slider-item mui-slider-item-duplicate">
+		  <a href="#">
+			<img src="http:\/\/placehold.it\/400x300">
+		  </a>
+		</div>
+		<!-- 第一张 -->
+		<div class="mui-slider-item">
+		  <a href="#">
+			<img src="http:\/\/placehold.it\/400x300">
+		  </a>
+		</div>
+		<!-- 第二张 -->
+		<div class="mui-slider-item">
+		  <a href="#">
+			<img src="http:\">
+		  </a>
+		</div>
+		<!-- 第三张 -->
+		<div class="mui-slider-item">
+		  <a href="#">
+			<img src="http:\">
+		  </a>
+		</div>
+		<!-- 第四张 -->
+		<div class="mui-slider-item">
+		  <a href="#">
+			<img src="http:\/\/placehold.it\/400x300">
+		  </a>
+		</div>
+		<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+		<div class="mui-slider-item mui-slider-item-duplicate">
+		  <a href="#">
+			<img src="http:\/\/placehold.it\/400x300">
+		  </a>
+		</div>
+	  </div>
+	  <div class="mui-slider-indicator">
+		<div class="mui-indicator mui-active">1</div>
+		<div class="mui-indicator">2</div>
+		<div class="mui-indicator">3</div>
+		<div class="mui-indicator">4</div>
+	  </div>
+	</div>
+	
+	
+
+	
+<div class="mui-content mui-row mui-fullscreen" style='padding-top:320px;padding-bottom:120px'>
+	<div class="mui-col-xs-3">
+		<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+		</div>
+	</div>
+	<div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+	</div>
+</div>
+	
+
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a class="mui-tab-item">
+			<span class="mui-icon mui-icon-phone"></span>
+			<span class="mui-tab-label">电话</span>
+		</a>
+		<a class="mui-tab-item">
+			<span class="mui-icon mui-icon-email"></span>
+			<span class="mui-tab-label">邮件</span>
+		</a>
+		<a class="mui-tab-item">
+			<span class="mui-icon mui-icon-upload"></span>
+			<span class="mui-tab-label">提交订单</span>
+		</a>
+		</div>
+	</nav>
+
+	<script src="js/mui.js"></script>
+	<script type="text/javascript">
+		
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+						interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0； ,
+						});
+			mui.init({
+						swipeBack: true //启用右滑关闭功能
+			});
+			
+			var controls = document.getElementById("segmentedControls");
+			var contents = document.getElementById("segmentedControlContents");
+			
+
+		//请求	
+		$.getJSON('http://192.168.210.37:10000/api/WebChatData/GetAllInventoryList',{},function(data,status){
+                console.log(data);
+								if(status){								
+									for(var p in data)
+									{
+										//赋值到左侧边菜单
+										controls.innerHTML+='<a class="mui-control-item" data-index="' + (data[p].Id - 1) + '" href="#content' + data[p].Id + '">' + data[p].CookType + '</a>';
+										controls.querySelector('.mui-control-item').classList.add('mui-active');	
+										
+										contents.innerHTML+='<div id="content' + data[p].Id + '" class="mui-control-content"><ul class="mui-table-view">';
+
+										////赋值到右侧边内容区
+										if(data[p].DdnList.length>0){
+											data[p].DdnList.forEach(function(index,value){
+												console.log(index._CookingClass);
+												console.log(index._DishName);
+												console.log(index._Img);
+												console.log(index._Price);
+												
+												contents.innerHTML+='<li class="mui-table-view-cell" style="list-style-type: none;padding:0"><div class="mui-card"><div class="mui-card-header">' 
+												+ index._DishName + '</div><div class="mui-card-content"><img width="150" height="150" src="http://192.168.210.37:10001/DishesImg/'
+												+index._Img+'" /> </div><div class="mui-card-footer" style="color:red;font-size:20px">￥'
+												+index._Price+'元 <a class="mui-card-link">选购</a><input type="checkbox" style="height:20px;width:20px;" value="'+index._ID+'"/></div> </div></li>'						  											
+											});
+											contents.innerHTML+='</ul></div>';
+										}
+
+									}
+													
+								}
+            });		
+	</script>
+
+</body>
+
+</html>

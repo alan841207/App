@@ -64,6 +64,14 @@
 	
 </div>
 
+	<div style="text-align: center;margin-top: 30px;">
+		<button type="button" class="mui-btn mui-btn-royal" onclick="GoDiningPage()"><img src='imges/Dining.png' /> 开始订餐Go</button> 
+	</div>
+	
+<!-- 	<div class="mui-btn mui-btn-royal">
+		<a href='#'><img src='imges/Dining.png' /> 开始订餐</a>
+	</div> -->
+	
 <div class="mui-content">
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
@@ -106,6 +114,52 @@
 	<label>登录</label>
 </div>
 
+<!-- 缩放式侧滑（类手机QQ） -->
+<!-- 侧滑导航根容器 -->
+<div class="mui-off-canvas-wrap mui-draggable mui-scalable">
+  <!-- 菜单容器 -->
+  <aside class="mui-off-canvas-left mui-transitioning" id="offCanvasSide">
+	<div class="mui-scroll-wrapper">
+	  <div class="mui-scroll">
+		<!-- 菜单具体展示内容 -->
+		
+	  </div>
+	</div>
+  </aside>
+  <!-- 主页面容器 -->
+  <div class="mui-inner-wrap mui-transitioning">
+	<!-- 主页面标题 -->
+	<header class="mui-bar mui-bar-nav">
+	  <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+	  <h1 class="mui-title">标题</h1>
+	</header>
+	<nav class="mui-bar mui-bar-tab">
+		<a class="mui-tab-item mui-active">
+			<span class="mui-icon mui-icon-home"></span>
+			<span class="mui-tab-label">首页</span>
+		</a>
+		<a class="mui-tab-item">
+			<span class="mui-icon mui-icon-phone"></span>
+			<span class="mui-tab-label">电话</span>
+		</a>
+		<a class="mui-tab-item">
+			<span class="mui-icon mui-icon-email"></span>
+			<span class="mui-tab-label">邮件</span>
+		</a>
+		<a class="mui-tab-item">
+			<span class="mui-icon mui-icon-gear"></span>
+			<span class="mui-tab-label">设置</span>
+		</a>
+	</nav>
+	<div class="mui-content mui-scroll-wrapper">
+	  <div class="mui-scroll">
+		<!-- 主界面具体展示内容 -->
+		
+	  </div>
+	</div>  
+	<div class="mui-off-canvas-backdrop"></div>
+  </div>
+</div>
 
 
 </body>
@@ -118,6 +172,18 @@
 		gallery.slider({
 					interval: 5000 //自动轮播周期，若为0则不自动播放，默认为0； ,
 					});
+					
+					
+		function GoDiningPage(){
+			alert('You button !!');
+			// mui.openURL('DiningFood.html');
+			
+			mui.openWindow({
+				url:'DiningFood.html',
+				id:'info'
+			})
+		}
+					
 	</script>
 
 </html>
